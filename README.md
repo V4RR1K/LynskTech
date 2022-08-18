@@ -1,0 +1,2 @@
+# LynskTech
+Tech Blog
