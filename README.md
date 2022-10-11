@@ -13,3 +13,8 @@ Angular Frontend
 
 ## Admin Use Case
 - Submit a directory with markdown data to post to the site
+
+## Developer Notes
+- add mvn compile notes
+
+
