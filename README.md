@@ -17,4 +17,7 @@ Angular Frontend
 ## Developer Notes
 - add mvn compile notes
 
+## General Ideas
+- Coffee Shop Review Section
+
 
