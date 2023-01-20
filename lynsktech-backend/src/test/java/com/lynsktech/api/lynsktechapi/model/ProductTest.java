@@ -22,7 +22,7 @@ public class ProductTest {
         String expected_image = "a url";
 
         // Invoke
-        Product product = new Product(expected_id, expected_name, expected_price, expected_description, expected_image);
+        BlogPost product = new BlogPost(expected_id, expected_name, expected_price, expected_description, expected_image);
 
         // Analyze
         assertEquals(expected_id, product.getId());
@@ -39,7 +39,7 @@ public class ProductTest {
         double price = 23.99;
         String description = "Rosie Champagne";
         String image = "a url";
-        Product product = new Product(id, name, price, description, image);
+        BlogPost product = new BlogPost(id, name, price, description, image);
 
         String expected_name = "Galactic Agent";
 
@@ -59,7 +59,7 @@ public class ProductTest {
         String description = "Rosie Champagne";
         String expectedDescription = "Galactic Agent";
         String image = "a url";
-        Product product = new Product(id, name, price, description, image);
+        BlogPost product = new BlogPost(id, name, price, description, image);
 
         // Invoke
         product.setDescription(expectedDescription);
@@ -76,7 +76,7 @@ public class ProductTest {
         double price = 23.99;
         String description = "Rosie Champagne";
         String image = "a url";
-        Product product = new Product(id, name, price, description, image);
+        BlogPost product = new BlogPost(id, name, price, description, image);
 
         double expectedPrice = 45.99;
 
@@ -95,7 +95,7 @@ public class ProductTest {
         double price = 23.99;
         String description = "Rosie Champagne";
         String image = "a url";
-        Product product = new Product(id, name, price, description, image);
+        BlogPost product = new BlogPost(id, name, price, description, image);
 
         String expectedImage = "a new url";
 
@@ -114,9 +114,9 @@ public class ProductTest {
         double price = 23.99;
         String description = "Rosie Champagne";
         String image = "a url";
-        Product product = new Product(id, name, price, description, image);
+        BlogPost product = new BlogPost(id, name, price, description, image);
 
-        String expectedString = String.format(Product.STRING_FORMAT, id, name, price, description, image);
+        String expectedString = String.format(BlogPost.STRING_FORMAT, id, name, price, description, image);
 
         // Invoke
         String actual = product.toString();

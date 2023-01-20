@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lynsktech.api.lynsktechapi.model.Product;
+import com.lynsktech.api.lynsktechapi.model.BlogPost;
 
 /**
  * Test the InventoryFileDAO class
@@ -28,24 +28,24 @@ import com.lynsktech.api.lynsktechapi.model.Product;
  */
 @Tag("Persistence-tier")
 public class InventoryFileDAOTest {
-        Product[] testProducts;
+        BlogPost[] testProducts;
         InventoryFileDAO inventoryFileDAO;
         ObjectMapper mockObjectMapper;
 
         @BeforeEach
         public void setupInventoryFileDAO() throws IOException {
                 mockObjectMapper = mock(ObjectMapper.class);
-                testProducts = new Product[3];
+                testProducts = new BlogPost[3];
 
-                testProducts[0] = new Product(99, "Burt's Bees Lip Balms", 11.49,
+                testProducts[0] = new BlogPost(99, "Burt's Bees Lip Balms", 11.49,
                                 "4 Value Pack of Burt's Bees Lip Balms",
                                 "a url");
-                testProducts[1] = new Product(100, "Tomatoes", 5.79, "24 oz Organic Tomatoes on the vine",
+                testProducts[1] = new BlogPost(100, "Tomatoes", 5.79, "24 oz Organic Tomatoes on the vine",
                                 "a url");
-                testProducts[2] = new Product(101, "White Chocolate", 4.09, "3.2 oz white chocolate with 30% cocoa",
+                testProducts[2] = new BlogPost(101, "White Chocolate", 4.09, "3.2 oz white chocolate with 30% cocoa",
                                 "a url");
 
-                when(mockObjectMapper.readValue(new File("doesnt_matter.txt"), Product[].class))
+                when(mockObjectMapper.readValue(new File("doesnt_matter.txt"), BlogPost[].class))
                                 .thenReturn(testProducts);
                 inventoryFileDAO = new InventoryFileDAO("doesnt_matter.txt", mockObjectMapper);
         }
@@ -53,7 +53,7 @@ public class InventoryFileDAOTest {
         @Test
         public void testGetProducts() {
                 // Invoke
-                Product[] products = inventoryFileDAO.getProducts();
+                BlogPost[] products = inventoryFileDAO.getProducts();
 
                 // Analyze
                 assertEquals(products.length, testProducts.length);
@@ -65,7 +65,7 @@ public class InventoryFileDAOTest {
     @Test
     public void testGetProduct() {
         // Invoke
-        Product product = inventoryFileDAO.getProduct(99);
+        BlogPost product = inventoryFileDAO.getProduct(99);
 
         // Analyze
         assertEquals(product, testProducts[0]);
@@ -74,7 +74,7 @@ public class InventoryFileDAOTest {
         @Test
         public void testFindProduct() {
                 // Invoke
-                Product[] products = inventoryFileDAO.findProducts("o");
+                BlogPost[] products = inventoryFileDAO.findProducts("o");
 
                 // Analyze
                 assertEquals(products.length, 2);
@@ -85,15 +85,15 @@ public class InventoryFileDAOTest {
     @Test
     public void testCreateProduct() {
         // Setup
-        Product product = new Product(102, "Girlfriend", 99.99, "Buy yourself a new girlfriend", "a url");
+        BlogPost product = new BlogPost(102, "Girlfriend", 99.99, "Buy yourself a new girlfriend", "a url");
 
         // Invoke
-        Product result = assertDoesNotThrow(() -> inventoryFileDAO.createProduct(product),
+        BlogPost result = assertDoesNotThrow(() -> inventoryFileDAO.createProduct(product),
                 "Unexpected exception thrown");
 
         // Analyze
         assertNotNull(result);
-        Product actual = inventoryFileDAO.getProduct(product.getId());
+        BlogPost actual = inventoryFileDAO.getProduct(product.getId());
         assertEquals(actual.getId(), product.getId());
         assertEquals(actual.getName(), product.getName());
     }
@@ -101,15 +101,15 @@ public class InventoryFileDAOTest {
     @Test
     public void testUpdateProduct() {
         // Setup
-        Product product = new Product(99,"Redbull", 8.99, "A can of red bull", "a url");
+        BlogPost product = new BlogPost(99,"Redbull", 8.99, "A can of red bull", "a url");
         
         // Invoke
-        Product result = assertDoesNotThrow(() -> inventoryFileDAO.updateProduct(product),
+        BlogPost result = assertDoesNotThrow(() -> inventoryFileDAO.updateProduct(product),
                 "Unexpected exception thrown");
 
         // Analyze 
         assertNotNull(result);
-        Product actual = inventoryFileDAO.getProduct(product.getId());
+        BlogPost actual = inventoryFileDAO.getProduct(product.getId());
         assertEquals(actual, product);
     }
 
@@ -130,9 +130,9 @@ public class InventoryFileDAOTest {
 
     @Test
     public void testSaveException() throws IOException {
-        doThrow(new IOException()).when(mockObjectMapper).writeValue(any(File.class), any(Product[].class));
+        doThrow(new IOException()).when(mockObjectMapper).writeValue(any(File.class), any(BlogPost[].class));
 
-        Product product = new Product(102, "Burt's Bees Lip Balms", 11.49, "4 Value Pack of Burt's Bees Lip Balms", "a url");
+        BlogPost product = new BlogPost(102, "Burt's Bees Lip Balms", 11.49, "4 Value Pack of Burt's Bees Lip Balms", "a url");
 
         assertThrows(IOException.class, () -> inventoryFileDAO.createProduct(product),
                 "Expected exception not thrown");
@@ -141,7 +141,7 @@ public class InventoryFileDAOTest {
     @Test
     public void testGetProductNotFound() {
          // Invoke
-        Product product = inventoryFileDAO.getProduct(98);
+        BlogPost product = inventoryFileDAO.getProduct(98);
 
          // Analyze
          assertEquals(product,null);
@@ -161,10 +161,10 @@ public class InventoryFileDAOTest {
     @Test
     public void testUpdateProductNotFound() {
         // Setup
-        Product product = new Product(98, "Fish", 44.99, "Large Slimy Fish", "a url");
+        BlogPost product = new BlogPost(98, "Fish", 44.99, "Large Slimy Fish", "a url");
 
         // Invoke
-        Product result = assertDoesNotThrow(() -> inventoryFileDAO.updateProduct(product),
+        BlogPost result = assertDoesNotThrow(() -> inventoryFileDAO.updateProduct(product),
                                                 "Unexpected exception thrown");
 
         // Analyze
@@ -183,7 +183,7 @@ public class InventoryFileDAOTest {
         // raised
         doThrow(new IOException())
             .when(mockObjectMapper)
-                .readValue(new File("doesnt_matter.txt"),Product[].class);
+                .readValue(new File("doesnt_matter.txt"),BlogPost[].class);
 
         // Invoke & Analyze
         assertThrows(IOException.class,

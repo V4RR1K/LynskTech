@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.lynsktech.api.lynsktechapi.persistence.InventoryDAO;
-import com.lynsktech.api.lynsktechapi.model.Product;
+import com.lynsktech.api.lynsktechapi.model.BlogPost;
 
 /**
  * ProductController handles the request for the Product resource
@@ -36,23 +36,23 @@ public class InventoryController {
     }
 
     /**
-     * Responds to the GET request for a {@linkplain Product product} for the given
+     * Responds to the GET request for a {@linkplain BlogPost product} for the given
      * id
      * 
-     * @param id The id used to locate the {@link Product product}
+     * @param id The id used to locate the {@link BlogPost product}
      * 
-     * @return ResponseEntity with {@link Product product} object and HTTP status of
+     * @return ResponseEntity with {@link BlogPost product} object and HTTP status of
      *         OK if found<br>
      *         ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable int id) {
+    public ResponseEntity<BlogPost> getProduct(@PathVariable int id) {
         LOG.info("GET /products/" + id);
         try {
-            Product product = inventoryDao.getProduct(id);
+            BlogPost product = inventoryDao.getProduct(id);
             if (product != null)
-                return new ResponseEntity<Product>(product, HttpStatus.OK);
+                return new ResponseEntity<BlogPost>(product, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (IOException e) {
@@ -62,25 +62,25 @@ public class InventoryController {
     }
 
     /**
-     * Creates a {@linkplain Product product} with the provided product object
+     * Creates a {@linkplain BlogPost product} with the provided product object
      * 
-     * @param product - The {@link Product product} to create
+     * @param product - The {@link BlogPost product} to create
      * 
-     * @return ResponseEntity with created {@link Product product} object and HTTP
+     * @return ResponseEntity with created {@link BlogPost product} object and HTTP
      *         status of CREATED<br>
-     *         ResponseEntity with HTTP status of CONFLICT if {@link Product
+     *         ResponseEntity with HTTP status of CONFLICT if {@link BlogPost
      *         product} object already exists<br>
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+    public ResponseEntity<BlogPost> createProduct(@RequestBody BlogPost product) {
         LOG.info("POST /products " + product);
 
         try {
-            Product newProduct = inventoryDao.createProduct(product);
+            BlogPost newProduct = inventoryDao.createProduct(product);
             // when productFound is false, meaning product is not found
             if (newProduct != null) {
-                return new ResponseEntity<Product>(newProduct, HttpStatus.CREATED);
+                return new ResponseEntity<BlogPost>(newProduct, HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
@@ -93,21 +93,21 @@ public class InventoryController {
     /**
      * Responds to the GET request for all
      * 
-     * @return ResponseEntity with array of {@link Product product} objects (may be
+     * @return ResponseEntity with array of {@link BlogPost product} objects (may be
      *         empty) and
      *         HTTP status of OK<br>
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("")
-    public ResponseEntity<Product[]> getProducts() {
+    public ResponseEntity<BlogPost[]> getProducts() {
         LOG.info("GET /products");
 
         try {
-            Product[] product = inventoryDao.getProducts();
+            BlogPost[] product = inventoryDao.getProducts();
             if (product != null)
-                return new ResponseEntity<Product[]>(product, HttpStatus.OK);
+                return new ResponseEntity<BlogPost[]>(product, HttpStatus.OK);
             else{
-                product = new Product[0];
+                product = new BlogPost[0];
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (IOException e) {
@@ -117,22 +117,22 @@ public class InventoryController {
     }
 
     /**
-     * Deletes a {@linkplain Product product} with the given id
+     * Deletes a {@linkplain BlogPost product} with the given id
      * 
-     * @param id The id of the {@link Product product} to deleted
+     * @param id The id of the {@link BlogPost product} to deleted
      * 
      * @return ResponseEntity HTTP status of OK if deleted
      *         ResponseEntity with HTTP status of NOT_FOUND if not found
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Product> deleteProduct(@PathVariable int id) {
+    public ResponseEntity<BlogPost> deleteProduct(@PathVariable int id) {
         LOG.info("DELETE /products/" + id);
 
         try {
             Boolean isDelete = inventoryDao.deleteProduct(id);
             if (isDelete)
-                return new ResponseEntity<Product>(HttpStatus.OK);
+                return new ResponseEntity<BlogPost>(HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (IOException e) {
@@ -142,14 +142,14 @@ public class InventoryController {
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Product products} whose name
+     * Responds to the GET request for all {@linkplain BlogPost products} whose name
      * contains
      * the text in name
      * 
      * @param name The name parameter which contains the text used to find the
-     *             {@link Product products}
+     *             {@link BlogPost products}
      * 
-     * @return ResponseEntity with array of {@link Product products} objects (may be
+     * @return ResponseEntity with array of {@link BlogPost products} objects (may be
      *         empty) and
      *         HTTP status of OK<br>
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
@@ -158,14 +158,14 @@ public class InventoryController {
      *         GET http://localhost:8080/products/?name=ee
      */
     @GetMapping("/")
-    public ResponseEntity<Product[]> searchProduct(@RequestParam String name) {
+    public ResponseEntity<BlogPost[]> searchProduct(@RequestParam String name) {
         LOG.info("GET /products/?name=" + name);
         try {
-            Product[] product = inventoryDao.findProducts(name);
+            BlogPost[] product = inventoryDao.findProducts(name);
             if (product != null)
-                return new ResponseEntity<Product[]>(product, HttpStatus.OK);
+                return new ResponseEntity<BlogPost[]>(product, HttpStatus.OK);
             else{
-                product = new Product[0];
+                product = new BlogPost[0];
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (IOException e) {
@@ -175,10 +175,10 @@ public class InventoryController {
     }
 
     /**
-     * Updates the {@linkplain Product product} with the provided
-     * {@linkplain Product product} object, if it exists
+     * Updates the {@linkplain BlogPost product} with the provided
+     * {@linkplain BlogPost product} object, if it exists
      * 
-     * @param product The {@link Product product} to update
+     * @param product The {@link BlogPost product} to update
      * 
      * @return ResponseEntity with updated {@linkProduct product} object and HTTP
      *         status of OK if updated<br>
@@ -186,12 +186,12 @@ public class InventoryController {
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
-    public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
+    public ResponseEntity<BlogPost> updateProduct(@RequestBody BlogPost product) {
         LOG.info("PUT /products " + product);
 
         try {
             // getting the product
-            Product updatedProduct = inventoryDao.updateProduct(product);
+            BlogPost updatedProduct = inventoryDao.updateProduct(product);
             // when product is not null, meaning product found
             if (updatedProduct != null) {
                 // update name

@@ -1,31 +1,29 @@
 package com.lynsktech.api.lynsktechapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.*;
+import java.util.Date;
 
 /**
- * Product class represents a Product Entity
- * Products have the following attributes
- * id
- * name
- * price (00.00)
- * description
+ * Post class represents a blog post entity
  * 
- * @author: itsTeamTwo
+ * 
+ * @author: Greg Lynskey
  */
-public class Product {
+public class BlogPost {
     // properties of the Product
     static final String STRING_FORMAT = "Product[id=%d, name=%s, price=%f, description=%s, imageURL=%s]";
 
     @JsonProperty("id")
     private int id;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("price")
-    private double price;
-    @JsonProperty("description")
-    private String description;
-    @JsonProperty("imageURL")
-    private String imageURL;
+    @JsonProperty("postTitle")
+    private String postTitle;
+    @JsonProperty("date")
+    private Date date;
+    @JsonProperty("dateUpdated")
+    private Date dateUpdated;
+    @JsonProperty("author")
+    private String author;
 
     /**
      * Creates a product
@@ -35,17 +33,16 @@ public class Product {
      * @param price       The price of the product
      * @param description The description of the product
      */
-    public Product(
+    public BlogPost(
             @JsonProperty("id") int id,
-            @JsonProperty("name") String name,
-            @JsonProperty("price") double price,
-            @JsonProperty("description") String description,
-            @JsonProperty("imageURL") String imageURL) {
+            @JsonProperty("postTitle") String postTitle,
+            @JsonProperty("date") Date date,
+            @JsonProperty("dateUpdated") Date dateUpdated,
+            @JsonProperty("author") String author) {
         this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.imageURL = imageURL;
+        this.postTitle = postTitle;
+        this.date = date;
+        
     }
 
     /**

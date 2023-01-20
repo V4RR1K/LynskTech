@@ -1,7 +1,7 @@
 package com.lynsktech.api.lynsktechapi.persistence;
 
 import java.io.IOException;
-import com.lynsktech.api.lynsktechapi.model.Product;
+import com.lynsktech.api.lynsktechapi.model.BlogPost;
 
 /**
  * InventoryDAO is an interface for Product object persistance
@@ -11,43 +11,43 @@ import com.lynsktech.api.lynsktechapi.model.Product;
 public interface InventoryDAO {
 
     /**
-     * Retrieves all {@linkplain Product products}
+     * Retrieves all {@linkplain BlogPost products}
      * 
-     * @return An array of {@link Product products} objects, may be empty
+     * @return An array of {@link BlogPost products} objects, may be empty
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Product[] getProducts() throws IOException;
+    BlogPost[] getProducts() throws IOException;
 
     /**
-     * Finds all {@linkplain Product products} whose name contains the given text
+     * Finds all {@linkplain BlogPost products} whose name contains the given text
      * 
      * @param containsText The text to match against
      * 
-     * @return An array of {@link Product products} whose nemes contains the given
+     * @return An array of {@link BlogPost products} whose nemes contains the given
      *         text, may be empty
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Product[] findProducts(String containsText) throws IOException;
+    BlogPost[] findProducts(String containsText) throws IOException;
 
     /**
-     * Retrieves a {@linkplain Product product} with the given id
+     * Retrieves a {@linkplain BlogPost product} with the given id
      * 
-     * @param id The id of the {@link Product product} to get
+     * @param id The id of the {@link BlogPost product} to get
      * 
-     * @return a {@link Product product} object with the matching id
+     * @return a {@link BlogPost product} object with the matching id
      *         <br>
-     *         null if no {@link Product product} with a matching id is found
+     *         null if no {@link BlogPost product} with a matching id is found
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Product getProduct(int id) throws IOException;
+    BlogPost getProduct(int id) throws IOException;
 
     /**
-     * Creates and saves a {@linkplain Product product}
+     * Creates and saves a {@linkplain BlogPost product}
      * 
-     * @param product {@linkplain Product product} object to be created and saved
+     * @param product {@linkplain BlogPost product} object to be created and saved
      *                <br>
      *                The id of the product object is ignored and a new uniqe id is
      *                assigned
@@ -55,30 +55,30 @@ public interface InventoryDAO {
      *                The name of the product object is compared to existing
      *                products to ensure it is unique
      *
-     * @return new {@link Product product} if successful, false otherwise
+     * @return new {@link BlogPost product} if successful, false otherwise
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Product createProduct(Product product) throws IOException;
+    BlogPost createProduct(BlogPost product) throws IOException;
 
     /**
-     * Updates and saves a {@linkplain Product}
+     * Updates and saves a {@linkplain BlogPost}
      * 
-     * @param {@link Product product} object to be updated and saved
+     * @param {@link BlogPost product} object to be updated and saved
      * 
-     * @return updated {@link Product product} if successful, null if
-     *         {@link Product product} could not be found
+     * @return updated {@link BlogPost product} if successful, null if
+     *         {@link BlogPost product} could not be found
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    Product updateProduct(Product product) throws IOException;
+    BlogPost updateProduct(BlogPost product) throws IOException;
 
     /**
-     * Deletes a {@linkplain Product product} with the given id
+     * Deletes a {@linkplain BlogPost product} with the given id
      * 
-     * @param id The id of the {@link Product product}
+     * @param id The id of the {@link BlogPost product}
      * 
-     * @return true if the {@link Product product} was deleted
+     * @return true if the {@link BlogPost product} was deleted
      *         <br>
      *         false if product with the given id does not exist
      * 

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.lynsktech.api.lynsktechapi.model.Product;
+import com.lynsktech.api.lynsktechapi.model.BlogPost;
 
 /**
  * Implement the functionality for JSON file-based persistance for Products
@@ -20,7 +20,7 @@ import com.lynsktech.api.lynsktechapi.model.Product;
  */
 @Component
 public class InventoryFileDAO implements InventoryDAO {
-    Map<Integer, Product> products;
+    Map<Integer, BlogPost> products;
 
     private ObjectMapper objectMapper;
     private static int nextId;
@@ -42,7 +42,7 @@ public class InventoryFileDAO implements InventoryDAO {
     }
 
     /**
-     * Generates the next id for a new {@linkplain Product product}
+     * Generates the next id for a new {@linkplain BlogPost product}
      * 
      * @return The next id
      */
@@ -53,50 +53,50 @@ public class InventoryFileDAO implements InventoryDAO {
     }
 
     /**
-     * Generates an array of {@linkplain Product products} from the tree map
+     * Generates an array of {@linkplain BlogPost products} from the tree map
      * 
-     * @return The array of {@link Product products}, may be empty
+     * @return The array of {@link BlogPost products}, may be empty
      */
-    private Product[] getProductsArray(String containsText) { // if containsText == null, no filter
-        ArrayList<Product> productArrayList = new ArrayList<>();
+    private BlogPost[] getProductsArray(String containsText) { // if containsText == null, no filter
+        ArrayList<BlogPost> productArrayList = new ArrayList<>();
 
-        for (Product product : products.values()) {
+        for (BlogPost product : products.values()) {
             if (containsText == null || product.getName().contains(containsText)) {
                 productArrayList.add(product);
             }
         }
 
-        Product[] productArray = new Product[productArrayList.size()];
+        BlogPost[] productArray = new BlogPost[productArrayList.size()];
         productArrayList.toArray(productArray);
         return productArray;
     }
 
     /**
-     * Generates an array of {@linkplain Product products} from the tree map
+     * Generates an array of {@linkplain BlogPost products} from the tree map
      * 
-     * @return The array of {@link Product products}, may be empty
+     * @return The array of {@link BlogPost products}, may be empty
      */
-    private Product[] getProductsArray() {
+    private BlogPost[] getProductsArray() {
         return getProductsArray(null);
     }
 
     /**
-     * Saves the {@linkplain Product products} from the map into the file as an
+     * Saves the {@linkplain BlogPost products} from the map into the file as an
      * array of JSON objects
      * 
-     * @return true if the {@link Product products} were written successfully
+     * @return true if the {@link BlogPost products} were written successfully
      * 
      * @throws IOException when file cannot be accessed or written to
      */
     private boolean save() throws IOException {
-        Product[] productArray = getProductsArray();
+        BlogPost[] productArray = getProductsArray();
 
         objectMapper.writeValue(new File(filename), productArray);
         return true;
     }
 
     /**
-     * Loads {@linkplain Product products} from the JSON file into the map
+     * Loads {@linkplain BlogPost products} from the JSON file into the map
      * <br>
      * Also sets next id to one more than the greatest id found in the file
      * 
@@ -109,9 +109,9 @@ public class InventoryFileDAO implements InventoryDAO {
         products = new TreeMap<>();
         nextId = 0;
 
-        Product[] productArray = objectMapper.readValue(new File(filename), Product[].class);
+        BlogPost[] productArray = objectMapper.readValue(new File(filename), BlogPost[].class);
 
-        for (Product product : productArray) {
+        for (BlogPost product : productArray) {
             products.put(product.getId(), product);
             if (product.getId() > nextId)
                 // Make the next id one greater than the maximum from the file
@@ -124,7 +124,7 @@ public class InventoryFileDAO implements InventoryDAO {
      ** {@inheritDoc}
      */
     @Override
-    public Product[] getProducts() {
+    public BlogPost[] getProducts() {
         synchronized (products) {
             return getProductsArray();
         }
@@ -134,7 +134,7 @@ public class InventoryFileDAO implements InventoryDAO {
      ** {@inheritDoc}
      */
     @Override
-    public Product[] findProducts(String containsText) {
+    public BlogPost[] findProducts(String containsText) {
         synchronized (products) {
             return getProductsArray(containsText);
         }
@@ -144,7 +144,7 @@ public class InventoryFileDAO implements InventoryDAO {
      ** {@inheritDoc}
      */
     @Override
-    public Product getProduct(int id) {
+    public BlogPost getProduct(int id) {
         synchronized (products) {
             if (products.containsKey(id))
                 return products.get(id);
@@ -157,9 +157,9 @@ public class InventoryFileDAO implements InventoryDAO {
      ** {@inheritDoc}
      */
     @Override
-    public Product createProduct(Product product) throws IOException {
+    public BlogPost createProduct(BlogPost product) throws IOException {
         synchronized (products) {
-            Product newProduct = new Product(nextId(), product.getName(), product.getPrice(), product.getDescription(),
+            BlogPost newProduct = new BlogPost(nextId(), product.getName(), product.getPrice(), product.getDescription(),
                     product.getImageURL());
             products.put(newProduct.getId(), newProduct);
             save(); // may throw an IOException
@@ -171,7 +171,7 @@ public class InventoryFileDAO implements InventoryDAO {
      ** {@inheritDoc}
      */
     @Override
-    public Product updateProduct(Product product) throws IOException {
+    public BlogPost updateProduct(BlogPost product) throws IOException {
         synchronized(products) {
             if (products.containsKey(product.getId()) == false)
                 return null;  // hero does not exist
