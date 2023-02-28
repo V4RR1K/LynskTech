@@ -24,6 +24,9 @@ public class BlogPost {
     private Date dateUpdated;
     @JsonProperty("author")
     private String author;
+    @JsonProperty("mdFile")
+    private String mdFile:
+    @JsonProperty("image_header")
 
     /**
      * Creates a product
