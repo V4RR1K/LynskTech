@@ -1,4 +1,4 @@
-package com.lynsktech.api.lynsktechapi.model;
+package com.Lynsktech.lynsktechbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.*;
@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Post class represents a blog post entity
  *
- * @author: Greg Lynskey
+ * @author Greg Lynskey
  */
 public class Post {
     // properties of the Product
@@ -55,6 +55,62 @@ public class Post {
         this.mdFile = mdFile;
         this.headerImage = headerImage;
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPostTitle() {
+        return postTitle;
+    }
+
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(String dateUpdated) {
+        this.dateUpdated = dateUpdated;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getMdFile() {
+        return mdFile;
+    }
+
+    public void setMdFile(String mdFile) {
+        this.mdFile = mdFile;
+    }
+
+    public String getHeaderImage() {
+        return headerImage;
+    }
+
+    public void setHeaderImage(String headerImage) {
+        this.headerImage = headerImage;
     }
 
     /**
