@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/LynskTech.iml" filepath="$PROJECT_DIR$/.idea/LynskTech.iml" />
-      <module fileurl="file://$PROJECT_DIR$/z_lynsktech-backend-depreciated/lynsktech-backend.iml" filepath="$PROJECT_DIR$/z_lynsktech-backend-depreciated/lynsktech-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lynsktech-backend/lynsktech-backend.iml" filepath="$PROJECT_DIR$/lynsktech-backend/lynsktech-backend.iml" />
     </modules>
   </component>
 </project>

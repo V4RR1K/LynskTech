@@ -7,7 +7,6 @@ import java.util.Date;
 /**
  * Post class represents a blog post entity
  *
- *
  * @author: Greg Lynskey
  */
 public class Post {
@@ -29,13 +28,16 @@ public class Post {
     private String mdFile;
     @JsonProperty("headerImage")
     private String headerImage;
+
     /**
-     * Creates a product
-     *
-     * @param id          The id of the product
-     * @param name        The name of the product
-     * @param price       The price of the product
-     * @param description The description of the product
+     * Creates a post entity
+     * @param id            entity id
+     * @param postTitle     entity title
+     * @param date          entity date of initial creation
+     * @param dateUpdated   entity date of update
+     * @param author        entity author
+     * @param mdFile        entity mdFile containing blog contents
+     * @param headerImage   entity header image for preview
      */
     public Post(
             @JsonProperty("id") int id,
