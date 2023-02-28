@@ -27,7 +27,7 @@ public class BlogPost {
     @JsonProperty("mdFile")
     private String mdFile:
     @JsonProperty("image_header")
-
+    private String
     /**
      * Creates a product
      * 
