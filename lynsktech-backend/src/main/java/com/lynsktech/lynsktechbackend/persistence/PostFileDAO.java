@@ -23,9 +23,9 @@ public class PostFileDAO implements PostDAO{
 
     Map<Integer, Post> posts;
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
     private static int nextId;
-    private String filename;
+    private final String filename;
 
 
     public PostFileDAO(@Value("${posts.file}") String filename,
@@ -53,6 +53,40 @@ public class PostFileDAO implements PostDAO{
         Post[] postArray = new Post[postArrayList.size()];
         postArrayList.toArray(postArray);
         return postArray;
+    }
+
+
+    private Post[] getPostArray() {
+        return getPostsArray(null);
+    }
+
+    private boolean save() throws IOException {
+        Post[] postArray = getPostArray();
+
+        objectMapper.writeValue(new File(filename), postArray);
+        return true;
+    }
+
+    /**
+     * Loads posts from json file into the map
+     *
+     * Fetches the greatest id in the file and sets ++nextid
+     * @return true if file read successfully
+     * @throws IOException
+     */
+    private boolean load() throws IOException {
+        posts = new TreeMap<>();
+        nextId = 0;
+
+        Post[] postArray = objectMapper.readValue(new File(filename), Post[].class);
+
+        for (Post post :  postArray){
+            posts.put(post.getId(), post);
+            if (post.getId() > nextId){
+                nextId = post.getId() + 1;
+            }
+        }
+        return true;
     }
 
     /**
