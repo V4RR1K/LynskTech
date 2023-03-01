@@ -1,12 +1,17 @@
 package com.Lynsktech.lynsktechbackend.persistence;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
+
 import com.Lynsktech.lynsktechbackend.model.Post;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Value;
 
-import java.io.IOException;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 
 /**
  * Component Data Access Object for the Post Object
@@ -34,6 +39,20 @@ public class PostFileDAO implements PostDAO{
         int id = nextId;
         ++nextId;
         return id;
+    }
+
+    private Post[] getPostsArray(String containsText){
+        ArrayList<Post> postArrayList = new ArrayList<>();
+
+        for (Post post : posts.values()) {
+            if (containsText == null || post.getPostTitle().contains(containsText)){
+                postArrayList.add(post);
+            }
+        }
+
+        Post[] postArray = new Post[postArrayList.size()];
+        postArrayList.toArray(postArray);
+        return postArray;
     }
 
     /**
