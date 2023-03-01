@@ -23,8 +23,17 @@ public class PostFileDAO implements PostDAO{
     private String filename;
 
 
-    public PostFileDAO(@Value("${posts.file}") String filename, ObjectMapper objectMapper) throws IOException{
+    public PostFileDAO(@Value("${posts.file}") String filename,
+                       ObjectMapper objectMapper) throws IOException {
+        this.filename = filename;
+        this.objectMapper = objectMapper;
+        load();
+    }
 
+    private synchronized static int nextId() {
+        int id = nextId;
+        ++nextId;
+        return id;
     }
 
     /**
