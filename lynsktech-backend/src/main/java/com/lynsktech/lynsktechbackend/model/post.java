@@ -1,8 +1,6 @@
 package com.Lynsktech.lynsktechbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.*;
-import java.util.Date;
 
 /**
  * Post class represents a blog post entity
