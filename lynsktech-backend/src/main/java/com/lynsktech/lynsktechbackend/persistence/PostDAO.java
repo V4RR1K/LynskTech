@@ -20,6 +20,7 @@ public interface PostDAO {
     /**
      * Retrieves all post objects with specific title
      *
+     * @param containsText query string
      * @return An array of post objects
      *
      * @throws IOException if issue with storage
