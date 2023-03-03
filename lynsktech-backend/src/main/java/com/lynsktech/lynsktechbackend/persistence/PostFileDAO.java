@@ -70,8 +70,10 @@ public class PostFileDAO implements PostDAO{
     /**
      * Loads posts from json file into the map
      *
-     * Fetches the greatest id in the file and sets ++nextid
+     * Fetches the greatest id in the file and sets ++nextId
+     *
      * @return true if file read successfully
+     *
      * @throws IOException
      */
     private boolean load() throws IOException {
@@ -97,7 +99,9 @@ public class PostFileDAO implements PostDAO{
      */
     @Override
     public Post[] getPosts() throws IOException {
-        return new Post[0];
+        synchronized (posts) {
+            return getPostArray();
+        }
     }
 
     /**
@@ -109,7 +113,9 @@ public class PostFileDAO implements PostDAO{
      */
     @Override
     public Post[] findPostsByTitle(String containsText) throws IOException {
-        return new Post[0];
+        synchronized (posts) {
+            return getPostsArray(containsText);
+        }
     }
 
     /**
@@ -120,8 +126,14 @@ public class PostFileDAO implements PostDAO{
      * @throws IOException if issue with storage
      */
     @Override
-    public Post getPost(int id) throws IOException {
-        return null;
+    public Post getPost (int id) throws IOException {
+        synchronized (posts){
+            if (posts.containsKey(id)){
+                return posts.get(id);
+            } else {
+                return null;
+            }
+        }
     }
 
     /**
@@ -133,7 +145,18 @@ public class PostFileDAO implements PostDAO{
      */
     @Override
     public Post createPost(Post newPost) throws IOException {
-        return null;
+        synchronized (posts){
+            Post createdPost = new Post(nextId(),
+                newPost.getPostTitle(),
+                newPost.getDate(),
+                newPost.getDateUpdated(),
+                newPost.getAuthor(),
+                newPost.getMdFile(),
+                newPost.getHeaderImage());
+            posts.put(createdPost.getId(), createdPost);
+            save();
+            return createdPost;
+        }
     }
 
     /**
