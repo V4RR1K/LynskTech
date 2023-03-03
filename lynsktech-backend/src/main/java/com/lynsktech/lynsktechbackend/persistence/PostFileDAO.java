@@ -168,7 +168,15 @@ public class PostFileDAO implements PostDAO{
      */
     @Override
     public Post updatePost(Post updatedPost) throws IOException {
-        return null;
+        synchronized (posts){
+            if (!posts.containsKey(updatedPost.getId())){
+                return null;
+            } else {
+                posts.put(updatedPost.getId(), updatedPost);
+                save();
+                return updatedPost;
+            }
+        }
     }
 
     /**
@@ -180,6 +188,13 @@ public class PostFileDAO implements PostDAO{
      */
     @Override
     public boolean deletePost(int id) throws IOException {
-        return false;
+        synchronized (posts){
+            if(posts.containsKey(id)){
+                posts.remove(id);
+                return save();
+            } else {
+                return false;
+            }
+        }
     }
 }
