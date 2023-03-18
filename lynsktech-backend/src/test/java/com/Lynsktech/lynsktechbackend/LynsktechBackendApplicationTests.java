@@ -7,7 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class LynsktechBackendApplicationTests {
 
 	@Test
-	void contextLoads() {
-	}
+	public void main() {
+			LynsktechBackendApplication.main(new String[] {});
+		}
+
 
 }

@@ -55,7 +55,6 @@ public class PostFileDAO implements PostDAO{
         return postArray;
     }
 
-
     private Post[] getPostArray() {
         return getPostsArray(null);
     }
