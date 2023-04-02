@@ -1,49 +1,61 @@
-.background{
-  background-image: url(src/assets/WoodBackground.JPG);
-  background-attachment: fixed ;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 100%;
-}
-
-.center{
-  padding-top: 20%;
-  display: flex;
-  justify-content: center;
-}
-
-.title{
+.slogantop{
+  font-weight: normal;
+  font-size: 85px;
+  padding-left: 10%;
   padding-top: 10%;
   color: antiquewhite;
-  font-size: 72px;
   font-family: 'Courier New', Courier, monospace;
-  justify-content: center;
-  padding-left: 7%;
 }
 
-.subtitle{
-  color:antiquewhite;
-  display: flex;
-  justify-content: center;
+.bodybig{
+  font-weight: normal;
   font-size: 25px;
+  margin-bottom: 15%;
+  padding-bottom: 10%;
+  padding-left: 8%;
+  padding-top: 5%;
+  color: antiquewhite;
   font-family: 'Courier New', Courier, monospace;
-  margin-top: 7%;
 }
 
-.subtitle2{
-  color:antiquewhite;
+.bodysmall{
+  font-weight: normal;
+  font-size: 18px;
+  margin-bottom: 15%;
+  padding-bottom: 10%;
+  padding-left: 8%;
+  padding-top: 5%;
+  color: antiquewhite;
+  font-family: 'Courier New', Courier, monospace;
+}
+.center{
+  padding-top: 10%;
+}
+
+.shrinkDivL{
+  width: 60%
+}
+.shrinkDivR{
+  width: 40%
+}
+
+.summary{
+  margin-left: 10%;
+}
+.container {
   display: flex;
-  justify-content: center;
-  font-size: 25px;
-  font-family: 'Courier New', Courier, monospace;
-  margin-top: 3.5%;
+  flex-direction: row;
 }
 
-.centercard{
+.profileimg{
+  width:60%;
+  margin-top: 10%;
+  margin-left: 25%
+}
+
+
+.cardman{
   background:#1e1e1e;
-  width: 460px;
-  height: 200px;
+  margin-top: 5%;
+  margin-left: 5%;
 }
-
-
