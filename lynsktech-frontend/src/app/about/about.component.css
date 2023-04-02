@@ -10,8 +10,7 @@
 .bodybig{
   font-weight: normal;
   font-size: 25px;
-  margin-bottom: 15%;
-  padding-bottom: 10%;
+  margin-bottom: 1%;
   padding-left: 8%;
   padding-top: 5%;
   color: antiquewhite;
@@ -21,12 +20,12 @@
 .bodysmall{
   font-weight: normal;
   font-size: 18px;
-  margin-bottom: 15%;
-  padding-bottom: 10%;
+  margin-bottom: 1%;
   padding-left: 8%;
   padding-top: 5%;
   color: antiquewhite;
   font-family: 'Courier New', Courier, monospace;
+  line-height: 24px;
 }
 .center{
   padding-top: 10%;
