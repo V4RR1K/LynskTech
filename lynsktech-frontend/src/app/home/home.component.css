@@ -1,0 +1,26 @@
+.background{
+  background-image: url(src/assets/CoffeeBar.JPG);
+  background-attachment: fixed ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.center{
+  padding-top: 15%;
+}
+
+.title{
+  padding-top: 20%;
+  color: white;
+  font-size: 72px;
+  font: "courier-new";
+
+}
+
+.centercard{
+  background: grey;
+  width: 400px;
+  height: 200px;
+}
