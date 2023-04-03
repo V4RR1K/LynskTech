@@ -17,6 +17,7 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { TechpageComponent } from './techpage/techpage.component';
 import { CoffeepageComponent } from './coffeepage/coffeepage.component';
+import { PostcardComponent } from './postcard/postcard.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CoffeepageComponent } from './coffeepage/coffeepage.component';
     AboutComponent,
     HomeComponent,
     TechpageComponent,
-    CoffeepageComponent
+    CoffeepageComponent,
+    PostcardComponent
   ],
   imports: [
     BrowserModule,

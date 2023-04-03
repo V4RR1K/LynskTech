@@ -1,0 +1,77 @@
+html, body {margin: 0; height: 100%; overflow: hidden}
+
+.slogantop{
+  font-weight: normal;
+  font-size: 75px;
+  padding-left: 10%;
+  padding-top: 10%;
+  color: antiquewhite;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.bodybig{
+  font-weight: normal;
+  font-size: 25px;
+  margin-bottom: 1%;
+  padding-left: 8%;
+  padding-top: 5%;
+  color: antiquewhite;
+  font-family: 'Courier New', Courier, monospace;
+}
+.contentspace{
+  margin-bottom: 5%;
+}
+.bodysmall1{
+  font-weight: normal;
+  font-size: 18px;
+  margin-bottom: 1%;
+  padding-left: 8%;
+  padding-top: 5%;
+  color: antiquewhite;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 24px;
+}
+.bodysmall2{
+  font-weight: normal;
+  font-size: 18px;
+  margin-bottom: 20%;
+  padding-left: 8%;
+  padding-top: 5%;
+  color: antiquewhite;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 24px;
+}
+.center{
+  padding-top: 10%;
+}
+
+.shrinkDivL{
+  width: 60%
+}
+.shrinkDivR{
+  width: 40%
+}
+
+.spacer{
+  margin-bottom: 50%;
+}
+.summary{
+  margin-left: 10%;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.profileimg{
+  width:60%;
+  margin-top: 10%;
+  margin-left: 25%
+}
+
+
+.cardman{
+  background:#1e1e1e;
+  margin-top: 5%;
+  margin-left: 5%;
+}
